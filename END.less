@@ -1,0 +1,2405 @@
+/*------------------------------------
+ *   VARIABLES
+ *------------------------------------*/
+
+/**GLOBAL COLORS**/
+
+@yellow: #ebb145;
+@orange: #e79563;
+@blue: #5aa5ee;
+@pink: #e574eb;
+@black: #231f20;
+@cream: #e1ddcf;
+
+/**BREAKPOINTS**/
+
+@maxBP: 1649px;
+@deskBP: 768px;
+@mBP: 767px;
+
+/**OTHER VARIABLES**/
+
+@mobile:~ "only screen and (max-width: 767px)";
+@desktop:~ "only screen and (min-width: 768px)";
+@tablet: ~"only screen and (max-width: 1024px) and (min-width:768px)";
+@desktopXL: ~"only screen and (min-width: 1649px)";
+
+/*------------------------------------
+ *   CUSTOM FONTS
+ *------------------------------------*/
+
+@font-face {
+  font-family: "Cute Drop Caps";
+  src: url("https://static1.squarespace.com/static/66bf0e4f6a2a996242bcdb71/t/66de47ef846a30742bc81058/1725843439991/cutedrop-caps.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "Cute Drop Script";
+  src: url("https://static1.squarespace.com/static/66bf0e4f6a2a996242bcdb71/t/66de6088e08d4b6ec098a5d3/1725849736779/cutedrop-script.woff2")
+    format("woff2");
+}
+
+h1 em,
+h2 em,
+h3 em,
+h4 em {
+  font-family: "Cute Drop Script";
+}
+
+h2,
+h1,
+h3 {
+  line-height: 0.8em !important;
+  margin-bottom: 1rem !important;
+}
+
+.accordion-item__title,
+h4,
+.list-section-title p {
+  line-height: 0.8em !important;
+}
+
+/* gradient underline all h3 links*/
+.sqs-block-html h3 a {
+  position: relative;
+  text-decoration: none;
+}
+
+.sqs-block-html h3 a:before {
+  content: "";
+  position: absolute;
+  bottom: 17%;
+  width: 100%;
+  left: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: rgb(90, 165, 238);
+  background: linear-gradient(
+    90deg,
+    rgba(90, 165, 238, 1) 0%,
+    rgba(229, 116, 235, 1) 100%
+  );
+}
+
+/* h4 with the href gradient underline */
+.sqs-block-html h4 a[href="#gradient-underline"] {
+  pointer-events: none;
+  text-decoration: none;
+}
+
+.sqs-block-html h4 a[href="#gradient-underline"]:before {
+  content: "";
+  position: absolute;
+  bottom: 17%;
+  width: 100%;
+  left: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: rgb(90, 165, 238);
+  background: linear-gradient(
+    90deg,
+    rgba(90, 165, 238, 1) 0%,
+    rgba(229, 116, 235, 1) 100%
+  );
+}
+
+//CS- style links in text in Gallery
+section[data-section-id="66e98d70d6690153a89a7ada"],
+article {
+  .sqs-html-content p a {
+    color: @blue;
+    text-decoration: none !important;
+    font-weight: bold;
+  }
+}
+
+/*------------------------------------
+ *   GLOBAL STYLES
+ *------------------------------------*/
+
+:root {
+  --header-button-font-font-family: "Cute Drop Caps";
+  --primary-button-font-font-family: "Cute Drop Caps";
+  --heading-font-font-family: "Cute Drop Caps";
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.sqs-block-image .design-layout-fluid .fluid-image-container .content-fill img {
+  transform: translate(-50%, -50%) !important;
+  top: 50% !important;
+  left: 50% !important;
+}
+
+/*------------------------------------
+ *BUTTONS
+ *------------------------------------*/
+
+/* HOMEPAGE CALL TO ACTION */
+.header-actions-action--cta .sqs-button-element--primary {
+  max-width: 100px;
+  white-space: initial;
+  line-height: 0.8em !important;
+  font-size: 24px !important;
+  padding: 0.2em 0.4em 0.4em 0.4em !important;
+}
+
+//CS- pseudo element for header CTA
+.header-actions-action--cta .sqs-button-element--primary::before {
+  content: "";
+  background-image: url(https://static1.squarespace.com/static/66bf0e4f6a2a996242bcdb71/t/66e989a1c5d1bb541b8c6ae3/1726581153098/BFA-pseudo.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 20%;
+  height: 100%;
+  position: absolute;
+  background-position: center;
+  top: -35px;
+  left: -15%;
+}
+
+/*------- GLOBAL BUTTONS ---------*/
+
+//CS- added transition by giving an opacity to alt gradient
+.sqs-button-element--primary {
+  position: relative;
+  color: @black !important;
+  border-color: @black !important;
+  font-family: "Cute Drop Caps";
+  font-size: 30px !important;
+  padding: 0em 0.6em 0.2em 0.6em !important;
+
+  /* Base gradient */
+  background: linear-gradient(
+    90deg,
+    rgba(231, 149, 99, 1) 0%,
+    rgba(235, 177, 69, 1) 100%
+  );
+  z-index: 1;
+
+  /* Ensure text stays visible */
+  span,
+  a {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Hover gradient background handled by ::after */
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(90, 165, 238, 1) 0%,
+      rgba(229, 116, 235, 1) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: -10; /* Keep the gradient behind the content */
+    border-radius: 4px;
+  }
+}
+
+//for transition to affect background gradient change
+.sqs-button-element--primary:hover:after {
+  opacity: 1 !important;
+}
+
+//override SQSP diminished opacity on hover
+.sqs-button-element--primary:hover {
+  opacity: 1 !important;
+}
+
+/*------------------------------------
+ * ANIMATION
+ *------------------------------------*/
+
+/*-- ANIMATE THE PLAIN OLD IMAGE BLOCK --*/
+body:not(.sqs-edit-mode-active) {
+  .sqs-block-image {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: 0.75s 0.3s ease;
+  }
+  .sqs-block-image.animate {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+
+  /*-- ANIMATE THE HEADINGS AND PARAGRAPHS --*/
+
+  @media @desktop {
+    h1,
+    h2,
+    h3 {
+      opacity: 0;
+      transform: translateX(-35px);
+      transition: 0.75s 0.3s ease;
+    }
+
+    h4,
+    p {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: 0.75s 0.3s ease;
+    }
+
+    //CS- move up the highlight class TextShape-node - make yellow title on about page, and faq's
+
+    .sqs-block-html:has(.TextShape-node) {
+      transform: translateY(-25px);
+    }
+
+    //has selector not working on mobile
+    @media @mobile {
+      .sqs-block-content:has(.TextShape-node),
+      .fe-block-yui_3_17_2_1_1725868353292_22766 {
+        transform: translateY(-25px) !important;
+      }
+    }
+
+    //tried block ids (no luck)
+    @media @mobile {
+      .fe-block.fe-block-yui_3_17_2_1_1725868353292_22766,
+      .fe-block.fe-block-03c6428485bfe55caff6 {
+        /*top:-100px;*/
+        transform: translateY(-100px) !important;
+      }
+    }
+    //the above still not working on mobile...
+
+    h1.animate,
+    h2.animate,
+    h3.animate {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+
+    h4.animate,
+    p.animate {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+}
+
+/*---- DO NOT ANIMATE ----*/
+
+#popOne h1,
+#popOne h2,
+#popOne h3 {
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+#popOne h4,
+#popOne p {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+#popOne .sqs-block-image {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+/*------------------------------------
+ * CUSTOM CLASSES
+ *------------------------------------*/
+
+/* TEXT move up 50% with a black background */
+
+h3 a[href="#moveup-black"] {
+  position: absolute !important;
+  left: 50% !important;
+  top: 0% !important;
+  transform: translate(-50%, -50%) !important;
+  background-color: @black;
+  color: @cream;
+  text-decoration: none !important;
+  pointer-events: none !important;
+  padding: 0.2em 0.7em;
+}
+
+h3 a[href="#moveup-black"]:before {
+  display: none !important;
+}
+
+/* TEXT move up 50% with a YELLOW background */
+
+h3 a[href="#moveup-yellow"] {
+  position: absolute !important;
+  left: 50% !important;
+  top: 0% !important;
+  transform: translate(-50%, -50%) !important;
+  background-color: @yellow;
+  color: @black;
+  text-decoration: none !important;
+  pointer-events: none !important;
+  padding: 0.2em 0.7em;
+}
+
+h3 a[href="#moveup-yellow"]:before {
+  display: none !important;
+}
+
+//give h3 on about page a highlight of yellow then style that?
+.sqs-html-content {
+  h3.animate {
+    span.sqsrte-text-highlight {
+      padding: 1rem !important;
+      line-height: 1.2rem !important;
+    }
+  }
+}
+
+/*IMAGE move up 50% on the y axis */
+
+.fe-block:has([src*="move-up-50"]) {
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: 15 !important;
+}
+@supports not selector(:has(*)) {
+  img[src*="move-up-50"] {
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+  section.overflow-decor {
+    .fluid-image-container,
+    .sqs-block-image-link,
+    .content-fill {
+      overflow: visible !important;
+    }
+  }
+  .image-block .fluid-image-container {
+    overflow: visible !important;
+    -webkit-mask-image: unset !important;
+    mask-image: unset !important;
+  }
+}
+
+//CS- for overlapping blocks on about page
+/*IMAGE move up 30% on the y axis */
+.fe-block:has([src*="move-up-30"]) {
+  -webkit-transform: translateY(-30%);
+  -ms-transform: translateY(-30%);
+  transform: translateY(-30%);
+  z-index: 15 !important;
+}
+@supports not selector(:has(*)) {
+  img[src*="move-up-30"] {
+    -webkit-transform: translateY(-30%);
+    -ms-transform: translateY(-30%);
+    transform: translateY(-30%);
+  }
+  section.overflow-decor {
+    .fluid-image-container,
+    .sqs-block-image-link,
+    .content-fill {
+      overflow: visible !important;
+    }
+  }
+  .image-block .fluid-image-container {
+    overflow: visible !important;
+    -webkit-mask-image: unset !important;
+    mask-image: unset !important;
+  }
+}
+//higher index for overlapping graphics (ABOUT PAGE)
+.fe-block:has([src*="high-z-index"]) {
+  z-index: 17 !important;
+}
+
+/*image move up 10 */
+@media @desktop {
+  .fe-block:has([src*="move-up-10"]) {
+    -webkit-transform: translateY(-15%);
+    -ms-transform: translateY(-15%);
+    transform: translateY(-15%);
+    z-index: 15 !important;
+  }
+  @supports not selector(:has(*)) {
+    img[src*="move-up-10"] {
+      -webkit-transform: translateY(-15%);
+      -ms-transform: translateY(-15%);
+      transform: translateY(-15%);
+    }
+    section.overflow-decor {
+      .fluid-image-container,
+      .sqs-block-image-link,
+      .content-fill {
+        overflow: visible !important;
+      }
+    }
+    .image-block .fluid-image-container {
+      overflow: visible !important;
+      -webkit-mask-image: unset !important;
+      mask-image: unset !important;
+    }
+  }
+}
+
+/*image coloured backgrounds*/
+
+/*blue background*/
+.fe-block:has(img[src*="blue-background"]) {
+  .fluid-image-container {
+    border: 0px solid;
+    overflow: visible !important;
+  }
+  .fluid-image-container::before {
+    position: absolute;
+    content: "";
+    background-color: @blue;
+    width: 100%;
+    height: 90%;
+    top: -10px;
+    left: 10px;
+  }
+  .image-block .fluid-image-container {
+    overflow: visible !important;
+    -webkit-mask-image: unset !important;
+    mask-image: unset !important;
+  }
+}
+
+/*pink, purple and blue background*/
+.fe-block:has(img[src*="pink-purple-blue-background"]) {
+  z-index: 1;
+  .fluid-image-container {
+    border: 0px solid;
+    overflow: visible !important;
+  }
+  .fluid-image-container::before {
+    position: absolute;
+    content: "";
+    background: rgb(229, 116, 235);
+    background: linear-gradient(
+      180deg,
+      rgba(229, 116, 235, 1) 0%,
+      rgba(90, 165, 238, 1) 100%
+    );
+    width: 100%;
+    height: 90%;
+    top: -10px;
+    left: 10px;
+  }
+  .image-block .fluid-image-container {
+    overflow: visible !important;
+    -webkit-mask-image: unset !important;
+    mask-image: unset !important;
+  }
+}
+
+/*yellow and oramge gradient background*/
+.fe-block:has(img[src*="orange-gradient-background"]) {
+  z-index: 1;
+  .fluid-image-container {
+    border: 0px solid;
+    overflow: visible !important;
+  }
+  .fluid-image-container::before {
+    position: absolute;
+    content: "";
+    background: rgb(235, 177, 69);
+    background: linear-gradient(
+      180deg,
+      rgba(235, 177, 69, 1) 0%,
+      rgba(231, 149, 99, 1) 100%
+    );
+    width: 102%;
+    height: 104%;
+    top: -2%;
+    left: -1%;
+    margin: 0 auto;
+  }
+  .image-block .fluid-image-container {
+    overflow: visible !important;
+    -webkit-mask-image: unset !important;
+    mask-image: unset !important;
+  }
+}
+
+//!!!!!adjustments for tristan images on about page!!!! can move this to about code later
+
+section[data-section-id="66ea9d98cb4ce35620e78d1f"] {
+  .fe-block:has(img[src*="orange-gradient-background"]) {
+    .fluid-image-container::before {
+      top: 2%;
+      left: -2%;
+    }
+  }
+  .fe-block:has(img[src*="pink-purple-blue-background"]) {
+    .fluid-image-container::before {
+      top: 2%;
+      left: -2%;
+      transform: rotate(0deg);
+    }
+  }
+}
+
+/*!!!!!END TRISTAN ABOUT PIC adjustments*/
+
+/*pink background*/
+.fe-block:has(img[src*="pink-background"]) {
+  z-index: 1;
+  .fluid-image-container {
+    border: 0px solid;
+    overflow: visible !important;
+  }
+  .fluid-image-container::before {
+    position: absolute;
+    content: "";
+    background-color: @pink;
+    width: 100%;
+    height: 90%;
+    top: -10px;
+    left: 10px;
+  }
+  .image-block .fluid-image-container {
+    overflow: visible !important;
+    -webkit-mask-image: unset !important;
+    mask-image: unset !important;
+  }
+}
+
+/* image pink and blue gradient border */
+
+.fe-block:has(img[src*="pink-blue-border"]) {
+  .fluid-image-container img {
+    border-image: linear-gradient(to right, @blue 0%, @pink 100%) 1;
+    border-width: 6px;
+    border-style: solid;
+  }
+  .image-block .fluid-image-container {
+    overflow: visible !important;
+    -webkit-mask-image: unset !important;
+    mask-image: unset !important;
+  }
+}
+
+/* image yewllo and orange gradient border */
+
+.fe-block:has(img[src*="yellow-orange-border"]) {
+  .fluid-image-container img {
+    border-image: linear-gradient(to top, @yellow 0%, @orange 100%) 1;
+    border-width: 20px;
+    border-style: solid;
+    border-radius: 20px;
+  }
+  .image-block .fluid-image-container {
+    overflow: visible !important;
+    -webkit-mask-image: unset !important;
+    mask-image: unset !important;
+  }
+}
+
+//video on film and super 8 page orang yellow border
+section[data-section-id="66eaefd31e67931856d9eded"],
+section[data-section-id="66e57ce6a181a2181d41ef3d"] {
+  .sqs-video-wrapper {
+    border-image: linear-gradient(to top, @yellow 0%, @orange 100%) 1;
+    border-width: 20px;
+    border-style: solid;
+    border-radius: 20px;
+    //center
+    margin: 0 auto;
+    @media @mobile {
+      border-width: 10px;
+    }
+  }
+  .sqs-video-wrapper {
+    box-sizing: border-box;
+    overflow: visible !important;
+    -webkit-mask-image: unset !important;
+    mask-image: unset !important;
+  }
+}
+
+/*image white border */
+
+.fe-block:has(img[src*="white-border"]) {
+  .fluid-image-container img {
+    border: 6px solid white;
+  }
+  .image-block .fluid-image-container {
+    overflow: visible !important;
+    -webkit-mask-image: unset !important;
+    mask-image: unset !important;
+  }
+}
+
+/*image cream border */
+
+.fe-block:has(img[src*="cream-border"]) {
+  .fluid-image-container img {
+    border: 6px solid @cream;
+    border-radius: 20px;
+  }
+  .image-block .fluid-image-container {
+    overflow: visible !important;
+    -webkit-mask-image: unset !important;
+    mask-image: unset !important;
+  }
+}
+
+/*image rotate-right*/
+.fe-block:has(img[src*="rotate-right"]) {
+  .fluid-image-container {
+    transform: rotate(7deg);
+  }
+  .image-block .fluid-image-container {
+    overflow: visible !important;
+    -webkit-mask-image: unset !important;
+    mask-image: unset !important;
+  }
+}
+
+/*image rotate-left*/
+.fe-block:has(img[src*="rotate-left"]) {
+  .fluid-image-container {
+    transform: rotate(-5deg);
+  }
+  .image-block .fluid-image-container {
+    overflow: visible !important;
+    -webkit-mask-image: unset !important;
+    mask-image: unset !important;
+  }
+}
+
+/*image small rotate-right*/
+.fe-block:has(img[src*="rotate-center"]) {
+  .fluid-image-container {
+    transform: rotate(3deg);
+  }
+  .image-block .fluid-image-container {
+    overflow: visible !important;
+    -webkit-mask-image: unset !important;
+    mask-image: unset !important;
+  }
+}
+
+/*image small rotate-left*/
+.fe-block:has(img[src*="rotate-left-small"]) {
+  .fluid-image-container {
+    transform: rotate(-3deg);
+  }
+  .image-block .fluid-image-container {
+    overflow: visible !important;
+    -webkit-mask-image: unset !important;
+    mask-image: unset !important;
+  }
+}
+
+/*------------------------------------
+ * section templates
+ *------------------------------------*/
+
+/*CUSTOM USER ITEMS LIST*/
+
+/*--- GLOBAL CODE ----*/
+@media @desktop {
+  /*inner layout*/
+  li.user-items-list-carousel__slide.list-item {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+  li.user-items-list-carousel__slide.list-item .list-item-content {
+    padding: 4rem 12rem 4rem 6rem;
+  }
+  .user-items-list-carousel__media-container {
+    width: 40% !important;
+    border: 10px solid white;
+    transform-origin: center;
+    transform: rotate(-3deg);
+    overflow: visible;
+  }
+}
+
+@media @mobile {
+  .user-items-list-carousel__media-container {
+    width: 100% !important;
+    margin-bottom: 2rem !important;
+  }
+  .list-item-content__title,
+  .list-item-content__description {
+    text-align: center !important;
+  }
+}
+
+/*slider dot styles (only on certain scoped sliders in JS*/
+.user-items-list-carousel {
+  position: relative; /* Ensures the dot indicators are positioned correctly */
+}
+
+.dot-indicators {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  position: absolute;
+  bottom: 20%;
+  left: 20%;
+  z-index: 999999;
+  margin-top: 0;
+}
+
+.dot-indicator {
+  width: 12px;
+  height: 12px;
+  background-color: transparent;
+  border: 2px solid @black;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+
+  &.active {
+    background-color: @black;
+  }
+}
+
+/* fonts*/
+.list-item-content__description p {
+  font-family: "Cute Drop Script";
+  font-size: 2rem;
+}
+/* arrows*/
+.user-items-list-carousel {
+  z-index: 4;
+  position: relative;
+  /** Circle Background **/
+  .user-items-list-carousel__arrow-icon-background {
+    opacity: 0 !important;
+  }
+
+  /**Change size of arrows**/
+  .user-items-list-carousel__arrow-button {
+    width: 60px;
+    height: 60px;
+    svg {
+      opacity: 0 !important;
+    }
+  }
+  /**Change size of mobile arrows**/
+  .mobile-arrow-button {
+    width: 40px;
+    height: 40px;
+    svg {
+      opacity: 0 !important;
+    }
+  }
+
+  /**Right Button**/
+
+  .user-items-list-carousel__arrow-button--right::before,
+  .mobile-arrow-button--right::before {
+    content: "";
+    background-image: url(https://static1.squarespace.com/static/66bf0e4f6a2a996242bcdb71/t/66de69506caf8f5923b8576f/1725851987270/Right+Arrow.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-position: center;
+    top: 0;
+    left: 0;
+  }
+
+  /**Left Button**/
+
+  .user-items-list-carousel__arrow-button--left::before,
+  .mobile-arrow-button--left::before {
+    content: "";
+    background-image: url(https://static1.squarespace.com/static/66bf0e4f6a2a996242bcdb71/t/66de6963ecaf9b218e7a142d/1725852005357/Left+Arrow.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-position: center;
+    top: 0;
+    left: 0;
+  }
+}
+
+/*HOMEPAGE*/
+@media @desktop {
+  .homepage .user-items-list-section .user-items-list,
+  #collection-66de87a919644d5477225381
+    .user-items-list-section
+    .user-items-list {
+    margin-top: -12vw;
+    margin-bottom: -12vw;
+  }
+
+  .homepage .user-items-list-carousel__slides,
+  #collection-66de87a919644d5477225381 .user-items-list-carousel__slides {
+    padding: 40px;
+  }
+}
+
+/*ABOUT PAGE - THINGS YOU NEED TO KNOW ABOUT ME */
+
+section[data-section-id="66e587596f06617beb3fee52"] {
+  //move up section because film strip taking up space in DOM
+  transform: translateY(-5rem);
+
+  .list-section-title {
+    transform: translateY(50%);
+    z-index: 10;
+    position: relative;
+    @media @mobile {
+      transform: translateY(55%);
+    }
+  }
+  .list-section-title p {
+    padding-bottom: 5px !important;
+    font-size: 2.5rem !important;
+    position: relative;
+    background-color: orange;
+    display: inline-block;
+    padding-left: 1vw !important;
+    padding-right: 1vw !important;
+    line-height: 1em;
+    @media @mobile {
+      font-size: 1.5rem !important;
+    }
+  }
+}
+
+@media @desktop {
+  section[data-section-id="66e587596f06617beb3fee52"] {
+    .user-items-list-carousel__slideshow-holder {
+      width: 90%;
+      margin: 0 auto;
+      border: 2px solid @black;
+      border-radius: 10px;
+    }
+
+    li.user-items-list-carousel__slide.list-item .list-item-content {
+      padding: 3rem 3rem 3rem 4rem;
+    }
+    /* fonts */
+    .list-item-content__description p {
+      font-family: unset;
+      font-size: 1rem;
+    }
+    /*title*/
+    h2.list-item-content__title {
+      font-family: "Cute Drop Script";
+      font-size: 2.5rem !important;
+    }
+    /*image*/
+    .user-items-list-carousel__media-container {
+      width: 60% !important;
+      border: 0px;
+      transform: rotate(0deg);
+      margin-bottom: 0% !important;
+    }
+    .user-items-list-carousel__media-inner {
+      height: 50vh;
+      padding-bottom: 0%;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+    /*arrows*/
+    .user-items-list-carousel__arrow-button--right {
+      transform: translateX(1.5vw);
+    }
+    .user-items-list-carousel__arrow-button--left {
+      transform: translateX(-1.5vw);
+    }
+
+    /*pseudo element*/
+    .list-section-title::after {
+      content: "";
+      position: absolute;
+      background-image: url(https://static1.squarespace.com/static/66bf0e4f6a2a996242bcdb71/t/66e594889c1b0f7cf1b98c63/1726321800320/Kim-Illustration.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 50%;
+      height: 120%;
+      bottom: -10%;
+      left: 17%;
+      transform: translateY(-50%);
+      z-index: 8;
+      @media screen and (max-width: 1200px) {
+        height: 5%;
+      }
+    }
+  }
+}
+
+@media @mobile {
+  /* fonts */
+  section[data-section-id="66e587596f06617beb3fee52"] {
+    .list-item-content__description p {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+/*PRICES AND INFORMATION*/
+#collection-66de87b36caf8f5923bd9129 {
+  @media @desktop {
+    .user-items-list-section,
+    .user-items-list-carousel__slides {
+      height: 100vh;
+      max-height: 100vh;
+    }
+    /*inner layout*/
+    .user-items-list-carousel__gutter {
+      padding-right: 0vw !important;
+    }
+
+    /*image*/
+    .user-items-list-carousel__media-container {
+      width: 50% !important;
+      border: 0px;
+      transform: rotate(0deg);
+    }
+    .user-items-list-carousel__media-inner {
+      height: 100vh;
+      padding-bottom: 0%;
+    }
+
+    .user-items-list-carousel__media-container {
+      width: 50% !important;
+      border: 0px;
+      transform: rotate(0deg);
+    }
+    .user-items-list-carousel__media-inner {
+      height: 100vh;
+      padding-bottom: 0%;
+    }
+  }
+
+  @media @tablet {
+    .user-items-list-carousel__media-container {
+      display: none;
+    }
+  }
+  @media @mobile {
+    .user-items-list-carousel__media-container {
+      display: none;
+    }
+  }
+
+  /* fonts */
+  .list-item-content__description p {
+    font-family: unset;
+    font-size: 0.9rem;
+  }
+  .list-item-content__description p em {
+    font-family: "Cute Drop Script";
+    font-size: 2rem;
+  }
+
+  /*title*/
+  h2.list-item-content__title {
+    background-color: @blue;
+    display: inline;
+    padding: 0 1.2rem 0.3rem;
+    font-size: 2rem !important;
+    margin: 0.5rem !important;
+  }
+
+  /* content */
+  li.user-items-list-carousel__slide.list-item .list-item-content {
+    padding: 2rem 1.2rem 3rem 1.2rem;
+    margin-bottom: 40px !important;
+    margin-top: 50px !important;
+    margin-right: 4vw;
+    border: 2px solid black;
+    border-radius: 7px;
+    position: relative;
+    overflow: visible;
+    background-color: @cream;
+    margin-left: 20px;
+    @media @desktop {
+      margin-bottom: 140px !important;
+    }
+  }
+
+  .list-item-content::before {
+    position: absolute;
+    content: "";
+    background: rgb(229, 116, 235);
+    background: linear-gradient(
+      180deg,
+      rgba(229, 116, 235, 1) 0%,
+      rgba(90, 165, 238, 1) 100%
+    );
+    width: 100%;
+    height: 100%;
+    bottom: -10px;
+    right: 10px;
+    border-radius: 6px;
+    z-index: -1;
+  }
+  /*button*/
+  .list-item-content__button-wrapper {
+    position: absolute;
+    bottom: 0;
+    transform: translateY(50%);
+  }
+
+  /*arrows*/
+  @media @desktop {
+    .desktop-arrows.arrows-bottom-wrapper {
+      position: absolute;
+      bottom: 40px;
+      left: 10px;
+    }
+  }
+
+  .mobile-arrows {
+    margin-bottom: 40px;
+  }
+  // Dot indicator styling prices
+  .dot-indicators {
+    bottom: 10%;
+    left: 25%;
+    @media @tablet {
+      bottom: 10%;
+      left: 75%;
+    }
+    @media @mobile {
+      transform: translate(10%, -50%);
+    }
+  }
+}
+
+/* CS- ABOUT PAGE VALUES SLIDER - 
+EDITED */
+
+//scoped JS to spesific sections
+
+section[data-section-id="66e951c94872df2949f5ee65"] {
+  position: relative;
+
+  @media @desktop {
+    .user-items-list-section,
+    .user-items-list-carousel__slides,
+    .user-items-list-carousel__slide {
+      max-height: 90vh;
+    }
+
+    .user-items-list-carousel__gutter {
+      padding-right: 0 !important;
+    }
+
+    .user-items-list-carousel__media-container {
+      width: 60% !important;
+      border: 0;
+      transform: rotate(0deg);
+      margin-right: 0;
+      @media @tablet {
+        width: 30%;
+      }
+    }
+
+    .user-items-list-carousel__media-inner {
+      height: 90vh;
+      padding-bottom: 0;
+    }
+  }
+
+  //stop content from moving out of view ??????
+
+  // Content styles
+  .list-item-content__description {
+    p {
+      font-family: unset;
+      font-size: 0.9rem;
+
+      em {
+        font-family: "Cute Drop Script";
+        font-size: 2rem;
+      }
+    }
+  }
+
+  h2.list-item-content__title {
+    @media @desktop {
+      display: inline;
+    }
+    font-size: 2rem !important;
+    margin: 0.5rem !important;
+    font-family: "Cute Drop Script";
+  }
+
+  .list-item-content__text-wrapper {
+    border: 2px solid black;
+    border-radius: 7px;
+    padding: 2rem 1.2rem 3rem 1.2rem;
+    background-color: @cream;
+    position: relative;
+    @media @desktop {
+      &::before {
+        position: absolute;
+        content: "";
+        background: linear-gradient(
+          180deg,
+          rgba(229, 116, 235, 1) 0%,
+          rgba(90, 165, 238, 1) 100%
+        );
+        width: 100%;
+        height: 100%;
+        bottom: 10px;
+        right: -10px;
+        border-radius: 6px;
+        z-index: -1;
+      }
+    }
+  }
+  @media @desktop {
+    li.user-items-list-carousel__slide.list-item .list-item-content {
+      width: 40%;
+      margin-right: 0;
+      position: absolute;
+      bottom: 0;
+      overflow: visible;
+      z-index: 1;
+
+      margin-bottom: 0 !important;
+    }
+
+    .list-item-content__button-wrapper {
+      position: absolute;
+      bottom: 0;
+      transform: translateY(50%);
+    }
+
+    .desktop-arrows.arrows-bottom-wrapper {
+      position: absolute;
+      bottom: 40px;
+      left: 10px;
+    }
+  }
+
+  .mobile-arrows {
+    margin-bottom: 40px;
+    margin-top: 6rem;
+  }
+
+  //positioned photo on the right
+  @media @desktop {
+    .user-items-list-carousel__media-container {
+      margin-right: 0 !important;
+    }
+  }
+
+  // Section title styles
+  .list-section-title {
+    position: absolute !important;
+    top: 75px;
+    width: 30% !important;
+    line-height: 0em !important;
+    font-weight: normal !important;
+    @media @mobile {
+      position: unset !important;
+      width: unset !important;
+      padding-top: 12vw;
+    }
+
+    p {
+      line-height: 0.5em !important;
+
+      strong {
+        font-size: 4rem;
+        display: inline-block;
+        padding-bottom: 2rem;
+        position: relative;
+        font-style: normal !important;
+        font-weight: normal !important;
+
+        &::after {
+          content: "";
+          position: absolute;
+          background-image: url(https://static1.squarespace.com/static/66bf0e4f6a2a996242bcdb71/t/66ea8a29c2e36d4767001798/1726646825494/Shapes-01.png);
+          background-size: contain;
+          background-repeat: no-repeat;
+          width: 70px;
+          height: 70px;
+          top: -30px;
+          right: 0%;
+          z-index: 2;
+          transform: translateX(120%);
+          @media @mobile {
+            width: 30px;
+            height: 30px;
+            top: -15px;
+          }
+        }
+      }
+
+      em {
+        font-size: 1rem;
+        font-family: "Jost";
+        line-height: 0em !important;
+        font-style: normal;
+      }
+    }
+  }
+
+  .dot-indicators {
+    bottom: 60px;
+    left: 20%;
+  }
+}
+
+@media @mobile {
+  section[data-section-id="66e951c94872df2949f5ee65"] {
+    .user-items-list-carousel__media-inner {
+      padding-bottom: 50% !important;
+    }
+
+    .dot-indicators {
+      bottom: -3.5rem !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+    }
+  }
+}
+
+/*------------------------------------
+ *  HEADER
+ *------------------------------------*/
+
+/* tablet  header */
+@media screen and (min-width: 768px) and (max-width: 1025px) {
+  .header .header-announcement-bar-wrapper {
+    padding: 2vw;
+  }
+}
+
+/*CHANGE LOGO COLOUR*/
+
+#collection-66de87b36caf8f5923bd9129,
+.collection-type-blog-basic-grid,
+#collection-66de87a919644d5477225381,
+#collection-66de877fcae1895899b686e8,
+#collection-66de879a5da7932f84a35162,
+#collection-66de87c0cc105d7d3f47cd60,
+#collection-66eaefd31e67931856d9edea {
+  .header-title-logo a {
+    position: relative;
+  }
+
+  .header-title-logo a img {
+    display: none;
+  }
+  .header-title-logo a::before {
+    content: "";
+    background-image: url(https://static1.squarespace.com/static/66bf0e4f6a2a996242bcdb71/t/66de92421aced37e87fdfb3e/1725862467022/KWW-Logo-Lettering-Only.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    left: 0;
+  }
+}
+
+/* BALANCED LOGO */
+.header-display-desktop {
+  .header-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0%;
+  }
+  .header-nav {
+    padding-left: 0 !important;
+    .header-nav-list {
+      display: flex;
+      justify-content: space-between;
+
+      .header-nav-item--active a {
+        background: none !important;
+      }
+
+      .header-nav-item--active a::before {
+        content: "";
+        width: 15px;
+        height: 15px;
+        background-color: #0071ff;
+        display: inline-block;
+        border-radius: 50%;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+/*call to action best friend button*/
+.header-display-desktop {
+  flex-direction: row-reverse;
+}
+
+.header-actions.header-actions--right {
+  justify-content: flex-start;
+}
+
+.header-actions--right .header-actions-action {
+  margin: 0vw !important;
+}
+
+/*------ MEGA MENU -----*/
+/*-- hide all navlinks from the desktop header ---*/
+.header-nav-item.header-nav-item--collection {
+  display: none;
+}
+
+/*styling the navigation*/
+.nav2 input[type="checkbox"] {
+  display: none;
+}
+
+.checkburger {
+  cursor: pointer;
+  display: block;
+  height: auto;
+  position: fixed;
+  right: 3.5vw;
+  top: 0.8vw;
+  width: 65px;
+  z-index: 1500;
+  background: transparent;
+  padding: 22px 23px 29px 23px;
+}
+
+/*-- hide original menu on a mobile ---*/
+
+.header-display-mobile {
+  .burger-box {
+    display: none;
+  }
+}
+
+/*initial styling of hamburger*/
+.checkburger span {
+  display: block;
+  margin: 0px 0 0 0;
+  -webkit-transition: 0.5s ease all;
+  -o-transition: 0.5s ease all;
+  transition: 0.5s ease all;
+  width: 40px;
+}
+
+/* styling of close icon */
+#hamburger:checked + label.checkburger {
+  border-right: none !important;
+}
+
+#hamburger:checked + label.checkburger .top-bun {
+  position: fixed !important;
+  right: 4.8vw;
+  top: 2vw;
+}
+
+#hamburger:checked + label.checkburger .meat {
+  width: 0px;
+}
+
+.checkburger:checked + label.checkburger {
+  position: fixed;
+}
+
+/*styling of first menu*/
+.menu {
+  height: 0;
+  overflow: hidden;
+  position: fixed;
+  left: 0;
+  top: 0;
+  -webkit-transition: height 0.5s ease;
+  -o-transition: height 0.5s ease;
+  transition: height 0.5s ease;
+  width: 100vw;
+  z-index: 1400;
+}
+
+#hamburger:checked ~ .menu {
+  display: block;
+  height: 100vh;
+}
+
+.section-background-content img {
+  visibility: visible !important;
+}
+
+/*--- custom cursor ---*/
+
+/*initial styling of hamburger---*/
+.checkburger span.top-bun {
+  content: "";
+  width: 65px;
+  height: 65px;
+  background-image: url("https://static1.squarespace.com/static/66bf0e4f6a2a996242bcdb71/t/66ded4c7bbdb9165a0e5dbe0/1725879495445/Menu+Icon-03.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  display: inline-block;
+  background-color: transparent;
+  position: absolute !important;
+  top: 20px;
+  right: 0px;
+  @media @mobile {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.checkburger span.top-bun:hover {
+  background-image: url("https://static1.squarespace.com/static/66bf0e4f6a2a996242bcdb71/t/66ded550d4b0e965fd60c50e/1725879632967/Menu+Icon-04.svg");
+}
+
+/*-- hide other burger lines */
+.meat,
+.bottom-bun {
+  display: none !important;
+}
+
+/*styling of hamburger icon when the pop-out is open */
+
+#hamburger:checked + label.checkburger span.top-bun {
+  content: "";
+  width: 65px;
+  height: 65px;
+  background-image: url("https://static1.squarespace.com/static/66bf0e4f6a2a996242bcdb71/t/66de765fe08d4b6ec09d4b79/1725855327687/Close.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  display: inline-block;
+  background-color: transparent;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+  position: absolute !important;
+  top: 20px;
+  right: 0px;
+  @media @mobile {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+#popOne .page-section,
+#popOne .page-section .fluid-engine {
+  min-height: 97vh;
+}
+
+#popOne .page-section .content-wrapper {
+  padding-top: 0vh !important;
+  min-height: 97vh !important;
+  padding-bottom: 3vw !important;
+}
+
+/*-- gradient underline --*/
+#popOne .page-section .fluid-engine .sqs-block-html a {
+  text-decoration: none !important;
+  background-image: none !important;
+  position: relative;
+}
+
+#popOne .page-section .fluid-engine .sqs-block-html h3 {
+  line-height: 1em !important;
+}
+
+#popOne .page-section .fluid-engine .sqs-block-html a:before {
+  content: "";
+  position: absolute;
+  bottom: 17%;
+  width: 100%;
+  left: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: rgb(90, 165, 238);
+  background: linear-gradient(
+    90deg,
+    rgba(90, 165, 238, 1) 0%,
+    rgba(229, 116, 235, 1) 100%
+  );
+}
+
+/*-- ACTIVE LINKS --*/
+
+/*homepage*/
+.homepage #popOne .page-section .fluid-engine .sqs-block-html a[href="/home"] {
+  color: @cream!important;
+}
+
+/*about*/
+#collection-66de877fcae1895899b686e8
+  #popOne
+  .page-section
+  .fluid-engine
+  .sqs-block-html
+  a[href="/about"] {
+  color: @cream!important;
+}
+
+/*gallery*/
+#collection-66de879a5da7932f84a35162
+  #popOne
+  .page-section
+  .fluid-engine
+  .sqs-block-html
+  a[href="/gallery"] {
+  color: @cream!important;
+}
+
+/*film reel*/
+#collection-66de87a919644d5477225381
+  #popOne
+  .page-section
+  .fluid-engine
+  .sqs-block-html
+  a[href="/film-reel"] {
+  color: @cream!important;
+}
+
+/*prices and ifno*/
+#collection-66de87b36caf8f5923bd9129
+  #popOne
+  .page-section
+  .fluid-engine
+  .sqs-block-html
+  a[href="/prices-information"] {
+  color: @cream!important;
+}
+
+/*destination*/
+#collection-66de87c0cc105d7d3f47cd60
+  #popOne
+  .page-section
+  .fluid-engine
+  .sqs-block-html
+  a[href="/destination"] {
+  color: @cream!important;
+}
+
+/*blog*/
+#collection-66c3327c14239c0a58c8ea52
+  #popOne
+  .page-section
+  .fluid-engine
+  .sqs-block-html
+  a[href="/blog"] {
+  color: @cream!important;
+}
+
+/*contact*/
+#collection-66de87906eb0046728d75cc3
+  #popOne
+  .page-section
+  .fluid-engine
+  .sqs-block-html
+  a[href="/contact-kim-williams-weddings"] {
+  color: @cream!important;
+}
+
+/*CS- super 8*/
+#collection-66eaefd31e67931856d9edea
+  #popOne
+  .page-section
+  .fluid-engine
+  .sqs-block-html
+  a[href="/super-8-film"] {
+  color: @cream!important;
+}
+
+/*-- mega menu social links alignment--*/
+@media @desktop {
+  #popOne .page-section .fluid-engine .sqs-svg-icon--list {
+    justify-content: flex-end;
+  }
+}
+
+/*--- MOBILE MENU ----*/
+
+@media @mobile {
+  #popOne {
+    z-index: 13;
+  }
+  #popOne .page-section,
+  #popOne .page-section .content-wrapper,
+  #popOne .page-section .fluid-engine {
+    min-height: 95vh !important;
+  }
+  #popOne .page-section .sqs-block {
+    justify-content: center;
+  }
+  #popOne .page-section .sqs-html-content h4 {
+    text-align: center !important;
+    padding-bottom: 20px;
+  }
+  #popOne .page-section .fluid-engine {
+    .fe-block:nth-child(3),
+    .fe-block:nth-child(4),
+    .fe-block:nth-child(5),
+    .fe-block:nth-child(6) {
+      display: none;
+    }
+  }
+}
+
+/*------------------------------------
+ *  FOOTER
+ *------------------------------------*/
+
+#footer-sections {
+  z-index: 12;
+  .page-section:nth-child(1) .section-border,
+  .page-section:nth-child(1) .section-background {
+    background: rgb(231, 149, 99) !important;
+    background: linear-gradient(
+      180deg,
+      rgba(231, 149, 99, 1) 0%,
+      rgba(235, 177, 69, 1) 100%
+    ) !important;
+  }
+}
+
+body:not(.sqs-edit-mode-active) {
+  #footer-sections {
+    .page-section > .content-wrapper {
+      z-index: unset !important;
+      -webkit-transform: unset !important;
+      -ms-transform: unset !important;
+      transform: unset !important;
+      overflow: visible !important;
+    }
+  }
+
+  .fe-block:has([src*="moveup"]) {
+    -webkit-transform: translateY(-65%);
+    -ms-transform: translateY(-65%);
+    transform: translateY(-65%);
+    z-index: 15 !important;
+  }
+  @supports not selector(:has(*)) {
+    img[src*="moveup"] {
+      -webkit-transform: translateY(-65%);
+      -ms-transform: translateY(-65%);
+      transform: translateY(-65%);
+    }
+    section.overflow-decor {
+      .fluid-image-container,
+      .sqs-block-image-link,
+      .content-fill {
+        overflow: visible !important;
+      }
+    }
+    .image-block .fluid-image-container {
+      overflow: visible !important;
+      -webkit-mask-image: unset !important;
+      mask-image: unset !important;
+    }
+  }
+}
+
+/*footer top section decor*/
+body:not(.sqs-edit-mode-active) {
+  #footer-sections .page-section:nth-child(1)::before {
+    content: "";
+    position: absolute;
+    background-image: url(https://static1.squarespace.com/static/66bf0e4f6a2a996242bcdb71/t/66de7c32fd87df14b25307d5/1725856818243/Footer.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 25%;
+    top: 0%;
+    z-index: 2;
+    transform: translateY(-99%);
+  }
+  @media @mobile {
+    #footer-sections .page-section:nth-child(1)::before {
+      background-size: cover;
+      height: 2%;
+    }
+    #footer-sections .page-section:last-child {
+      .sqs-html-content .sqsrte-small {
+        text-align: center;
+      }
+    }
+  }
+
+  // CS- Adjust underline pseudo spacing in footer section only
+
+  #footer-sections {
+    .sqs-block-html h4 a[href="#gradient-underline"] {
+      position: relative;
+
+      &:before {
+        content: "";
+        position: absolute;
+        bottom: -17%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          rgba(90, 165, 238, 1) 0%,
+          rgba(229, 116, 235, 1) 100%
+        );
+        transition: background 0.3s ease;
+      }
+    }
+  }
+}
+//remove line on footer links
+#footer-sections .sqs-block-html a {
+  text-decoration: none;
+}
+//remove padding between footer links
+#footer-sections p {
+  margin: 0;
+}
+
+/* social links */
+
+@media @desktop {
+  #footer-sections .socialaccountlinks-v2-block {
+    align-items: flex-end;
+  }
+}
+
+/*emojis code block */
+#footer-sections {
+  @media @mobile {
+    .sqs-block-code {
+      text-align: right !important;
+    }
+  }
+  @media @mobile {
+    .sqs-block-code {
+      text-align: left !important;
+    }
+  }
+}
+
+/*------------------------------------
+ *  HOME PAGE
+ *------------------------------------*/
+
+.homepage .page-section:nth-child(1) {
+  padding-top: 0px !important;
+}
+
+section[data-section-id="66c356a61811ed637029b27a"] {
+  .gallery-fullscreen-slideshow {
+    height: calc(94vw * 0.75) !important;
+  }
+
+  .section-background::before {
+    content: "";
+    position: absolute;
+    background-image: url("https://static1.squarespace.com/static/66bf0e4f6a2a996242bcdb71/t/66c35a8264860b3f090d6cbd/1724078722258/Home+page+frame+with+text.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 92vw;
+    height: calc(90vw * 0.75);
+    top: 110px;
+    left: 4vw;
+    z-index: 2;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  section[data-section-id="66c356a61811ed637029b27a"] {
+    .section-background::before {
+      top: 8vw;
+    }
+  }
+}
+
+@media screen and (min-width: 1240px) {
+  section[data-section-id="66c356a61811ed637029b27a"] {
+    .gallery-fullscreen-slideshow {
+      height: calc(80vw * 0.75) !important;
+    }
+    .section-background::before {
+      content: "";
+      position: absolute;
+      background-image: url("https://static1.squarespace.com/static/66bf0e4f6a2a996242bcdb71/t/66ed64cd214171774de4ee5c/1726833869524/Large+-+Home+page+frame+with+text.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 92vw;
+      height: calc(76vw * 0.75);
+      top: 120px;
+      left: 4vw;
+      z-index: 2;
+      display: block;
+    }
+  }
+}
+
+/*------------------------------------
+ *  PRICING AND INFO PAGE
+ *------------------------------------*/
+
+/* LETS CHAT CTA */
+
+section[data-section-id="66de9f79c61718555267d683"] {
+  @media screen and (max-width: 1200px) {
+    .content-wrapper {
+      padding-left: 12vw !important;
+      padding-right: 12vw !important;
+    }
+    .sqs-col-12 .sqs-col-6 {
+      width: 100% !important;
+    }
+  }
+  .sqs-col-12 {
+    position: relative !important;
+  }
+  .sqs-col-12 .row {
+    background-color: @cream;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 3px solid @black;
+    position: relative;
+    z-index: 6;
+
+    @media screen and (max-width: 1200px) {
+      flex-direction: column;
+    }
+    .sqs-block-image {
+      padding: 0px !important;
+    }
+    .sqs-block-image .sqs-image-shape-container-element {
+      padding-bottom: 110% !important;
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
+      @media screen and (max-width: 1200px) {
+        padding-bottom: 75% !important;
+        border-bottom-left-radius: 0px;
+        border-top-right-radius: 6px;
+      }
+    }
+  }
+
+  /*background psuedo element*/
+  .sqs-col-12::before {
+    position: absolute;
+    content: "";
+    background: rgb(235, 177, 69);
+    background: linear-gradient(
+      90deg,
+      rgba(235, 177, 69, 1) 0%,
+      rgba(231, 149, 99, 1) 100%
+    );
+    width: 100%;
+    height: 100%;
+    bottom: -15px;
+    left: 15px;
+    z-index: 1;
+    border-radius: 10px;
+  }
+
+  /* kim logo psuedo element*/
+  .sqs-col-12::after {
+    content: "";
+    position: absolute;
+    background-image: url(https://static1.squarespace.com/static/66bf0e4f6a2a996242bcdb71/t/66dea732287f4b6bc57381ef/1725867826090/KWW-Submark-04.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 20%;
+    height: 20%;
+    top: 0%;
+    left: 7%;
+    transform: translateY(-50%);
+    z-index: 8;
+    @media screen and (max-width: 1200px) {
+      height: 5%;
+    }
+  }
+
+  .sqs-col-12 .row .sqs-col-6:nth-child(2) {
+    padding: 1rem;
+    @media screen and (min-width: 1200px) {
+      padding: 2rem;
+    }
+  }
+}
+
+/*CS- pricing list slider content styling  */
+
+section[data-section-id="66e3b6fe1467954d4750e8c5"] {
+  //CS- pseudo title
+  position: relative;
+
+  &::before {
+    content: "Package Options...";
+    background: @black;
+    color: @cream;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
+    z-index: 999;
+    text-align: center;
+    padding: 1rem 4rem;
+    font-family: "Cute Drop Caps";
+    font-size: 3rem;
+    @media @mobile {
+      font-size: 2rem;
+      padding: 0.5rem 1rem;
+      white-space: nowrap;
+    }
+  }
+  // END pseudo title
+
+  //line
+  .list-item-content__description p:nth-child(2),
+  .list-item-content__description p:nth-last-child(2) {
+    color: @pink!important;
+    width: 100%;
+    font-weight: 900;
+  }
+
+  //make price same font as title (make italic AND bold)
+  .list-item-content__description p {
+    strong {
+      em {
+        font-family: "Cute Drop Caps" !important;
+        font-style: normal;
+        font-size: 3rem !important;
+        font-weight: 400;
+        line-height: 0.8rem;
+      }
+    }
+  }
+
+  /* Target the slide titles to have orange  ) */
+  .user-items-list-carousel__slide:nth-child(1) h2.list-item-content__title {
+    background-color: @orange!important;
+  }
+
+  /* Target the slide titles to have pink  ) */
+  .user-items-list-carousel__slide:nth-child(3) h2.list-item-content__title {
+    background-color: @pink!important;
+  }
+
+  /* Target the slide titles to have yellow  ) */
+  .user-items-list-carousel__slide:nth-child(4) h2.list-item-content__title {
+    background-color: @yellow!important;
+  }
+
+  /* Target the slide titles to have pink blue  ) */
+  .user-items-list-carousel__slide:nth-child(5) h2.list-item-content__title {
+    background: linear-gradient(
+      90deg,
+      rgba(229, 116, 235, 1) 0%,
+      rgba(90, 165, 238, 1) 100%
+    );
+  }
+
+  /* Target the slide titles to have yellow/orange - pre wedding shoot) */
+  .user-items-list-carousel__slide:nth-child(6) h2.list-item-content__title {
+    background: linear-gradient(
+      90deg,
+      rgba(235, 177, 69, 1) 0%,
+      rgba(231, 149, 99, 1) 100%
+    );
+  }
+}
+
+/*CS- pricing list slider content styling END */
+
+/*CS- FAQ's Accorian line (removed line in accorian)  */
+.accordion-block {
+  ul.accordion-items-container {
+    li.accordion-item {
+      position: relative;
+
+      .accordion-item__click-target {
+        position: relative;
+
+        &:before {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          border-radius: 2px !important;
+          background: linear-gradient(
+            90deg,
+            rgba(90, 165, 238, 1) 0%,
+            rgba(229, 116, 235, 1) 100%
+          );
+          transition: background 1s ease !important;
+          z-index: 20;
+        }
+
+        &:hover:before {
+          background: linear-gradient(
+            90deg,
+            rgba(229, 116, 235, 1) 0%,
+            rgba(90, 165, 238, 1) 100%
+          );
+        }
+      }
+    }
+  }
+}
+//padding on open item
+.accordion-item__dropdown.accordion-item__dropdown--open {
+  padding-top: 1rem !important;
+}
+
+/*------------------------------------
+ *  BLOG INDEX PAGE
+ *------------------------------------*/
+
+/*categories*/
+ul.archive-group-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.archive-group a {
+  transition: 0.5s ease;
+}
+
+.archive-group a:hover {
+  color: @blue;
+}
+
+/*grid*/
+
+.collection-type-blog-basic-grid {
+  .blog-list-pagination {
+    margin-top: 0rem !important;
+    margin-bottom: 0rem !important;
+  }
+  /*page layout*/
+  .blog-basic-grid {
+    padding-top: 4vw;
+    padding-bottom: 8vw !important;
+    .blog-title {
+      font-size: 2.5rem;
+    }
+  }
+  /*card design*/
+  .blog-item .image-wrapper {
+    border-radius: 10px;
+  }
+  .blog-basic-grid .blog-item .image-wrapper {
+    border: 2px solid @pink;
+  }
+  .blog-basic-grid .blog-item:nth-child(3n + 1) .image-wrapper {
+    border: 2px solid @blue !important;
+  }
+  .blog-basic-grid .blog-item:nth-child(3n) .image-wrapper {
+    border: 2px solid @orange !important;
+  }
+}
+
+/*----------------------------------
+ *  BLOG INDIVIDUAL ENTRIES (CS- )
+ *----------------------------------*/
+
+//CS- style blog h2s
+.blog-item-wrapper article.entry {
+  h2 {
+    font-size: 3rem;
+  }
+
+  //less padding below blog title
+  .blog-item-top-wrapper {
+    margin-bottom: 1.5rem;
+    @media @mobile {
+      margin-bottom: 0 !important;
+    }
+  }
+
+  //style meta date and category
+  .blog-item-meta-wrapper {
+    padding-top: 4rem;
+    .blog-meta-item.blog-meta-item--categories
+      span.blog-item-category-wrapper
+      a {
+      font-family: "Cute Drop Script";
+      font-size: 1.5rem;
+      color: @pink;
+    }
+    .blog-item-author-date-wrapper {
+      time {
+        span {
+          font-family: "Cute Drop Script";
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
+
+//pagination styles
+.item-pagination[data-collection-type^="blog"] {
+  //add padding to account for angled footer border
+  padding-bottom: 10rem;
+  //change size of pagination h2
+  .pagination-title-wrapper h2 {
+    font-size: 2rem;
+    @media @mobile {
+      font-size: 1.5rem;
+    }
+  }
+
+  //add icon / buttons to pagination and hide natve arrows
+
+  //previous
+  .item-pagination-link--prev .item-pagination-icon {
+    content: "";
+    background-image: url(https://static1.squarespace.com/static/66bf0e4f6a2a996242bcdb71/t/66de6963ecaf9b218e7a142d/1725852005357/Left+Arrow.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 150px;
+  }
+
+  //next
+  .item-pagination-link--next .item-pagination-icon {
+    content: "";
+    background-image: url(https://static1.squarespace.com/static/66bf0e4f6a2a996242bcdb71/t/66de69506caf8f5923b8576f/1725851987270/Right+Arrow.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 150px;
+  }
+  .caret-left-icon--small,
+  .caret-right-icon--small {
+    display: none;
+  }
+}
+
+/*------------------------------------
+ *  ABOUT PAGE (CS- Carousel Dot Styling) - to be sorted in JS
+ *------------------------------------*/
+//CS- star above yippee
+section[data-section-id="66e83301f3781f0639cbb737"] {
+  .sqs-html-content {
+    position: relative;
+  }
+  .sqs-html-content::before {
+    content: "";
+
+    background-image: url(https://static1.squarespace.com/static/66bf0e4f6a2a996242bcdb71/t/66ec0f0476bb595dd8224c7f/1726746372232/starr.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    left: -10px;
+    top: -10px;
+    width: 20px;
+    height: 20px;
+    z-index: 99;
+  }
+}
+
+/*------------------------------------
+ *  GALLERY (CS- )
+ *------------------------------------*/
+
+//CS- TESTIMONIALS
+
+//LIKE WHAT YOU SEE???
+section[data-section-id="66e9982bef06645ac6f06ebc"],
+section[data-section-id="66ea6e380465a1202ed78f9f"],
+section[data-section-id="66eae9ec32d3dc49634153d5"],
+section[data-section-id="66eaefd31e67931856d9edfa"] {
+  padding-bottom: 10vw !important;
+  .content .sqs-row {
+    position: relative;
+    background-color: @cream!important;
+    z-index: 10;
+    overflow: visible;
+  }
+  .sqs-col-12 {
+    position: relative;
+    background-color: @cream!important;
+    border: 2px solid black;
+    border-radius: 10px;
+    overflow: visible;
+  }
+  .sqs-col-12::before {
+    position: absolute;
+    content: "";
+    background: rgb(229, 116, 235);
+    background: linear-gradient(
+      180deg,
+      rgba(229, 116, 235, 1) 0%,
+      rgba(90, 165, 238, 1) 100%
+    );
+    width: 104%;
+    height: 104%;
+    bottom: -50px;
+    right: -45px;
+    border-radius: 6px;
+    z-index: -4;
+  }
+  .content .sqs-row::before {
+    content: "";
+    position: absolute;
+    background-image: url(https://static1.squarespace.com/static/66bf0e4f6a2a996242bcdb71/t/66e99a25e8abae7793fd35ca/1726585383367/CTA+Banner+Full+BG.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 105%;
+    height: 120%;
+    top: -10%;
+    left: -2.5%;
+    z-index: -2;
+    background-color: @cream;
+    border-radius: 6px;
+  }
+}
+
+/*--- MOBILE CTA ---*/
+
+@media @mobile {
+  section[data-section-id="66e9982bef06645ac6f06ebc"],
+  section[data-section-id="66ea6e380465a1202ed78f9f"],
+  section[data-section-id="66eae9ec32d3dc49634153d5"],
+  section[data-section-id="66eaefd31e67931856d9edfa"] {
+    .content-wrapper {
+      padding-left: 12vw !important;
+      padding-right: 12vw !important;
+    }
+    .content .sqs-row::before {
+      height: 110%;
+      top: -5%;
+    }
+    .sqs-col-12::before {
+      bottom: -20px;
+      right: -20px;
+    }
+    .sqs-block-button {
+      padding-bottom: 2rem !important;
+      padding-top: 0px;
+    }
+  }
+}
+
+/*------------------------------------
+ *  FILM REEL (CS- ) AND SUPER 8
+SCOPED TO CUSTOM height = 99 to apply styles to the h4 em
+ *------------------------------------*/
+
+//smaller background image here and on super 8
+section[data-section-id="66e57ce6a181a2181d41ef3d"],
+section[data-section-id="66eaefd31e67931856d9eded"] {
+  .section-background {
+    height: 65vh;
+    @media @mobile {
+      height: 25vh;
+    }
+  }
+}
+
+//CS- need to replace background image here for a holograph??
+section[data-current-styles*='"customSectionHeight": 99'] {
+  h4 em {
+    background-image: url(https://static1.squarespace.com/static/66bf0e4f6a2a996242bcdb71/t/66e9c4a629f38206fddbff26/1726596264489/Testimonial+BG.png);
+    background-size: fill;
+    background-repeat: no-repeat;
+    padding: 1rem 2rem;
+    border-radius: 14px;
+  }
+}
+
+//video styles - rounded corners
+
+.video-block
+  .intrinsic
+  .embed-block-wrapper:not(.embed-block-provider-SoundCloud)
+  iframe,
+.video-block
+  .sqs-block-content
+  .intrinsic
+  .embed-block-wrapper:not(.embed-block-provider-SoundCloud)
+  iframe {
+  border-radius: 20px !important;
+}
+
+//move up video at bottom of destination page
+
+section[data-section-id="66e9b88f4a419d6bc45a0853"] {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  margin-top: -8vh;
+}
+
+section[data-section-id="66e9b88f4a419d6bc45a0853"] .video-block {
+  -webkit-transform: translateY(-30%);
+  -ms-transform: translateY(-30%);
+  transform: translateY(-30%);
+  z-index: 15;
+  position: relative;
+  overflow: visible !important;
+}
+
+//take under;ine off linked video names in film testoimonial
+.list-item-content__description p a {
+  text-decoration: none !important;
+}
+
+//super eight first video move up
+@media @desktop {
+  section[data-section-id="66e57ff82cc85f5b310709a8"],
+  section[data-section-id="66eaefd31e67931856d9edf0"] {
+    .video-block:first-of-type {
+      -webkit-transform: translateY(-35%);
+      -ms-transform: translateY(-35%);
+      transform: translateY(-35%);
+      z-index: 15;
+      position: relative;
+      overflow: visible !important;
+    }
+  }
+}
+
+//center text near films on these pages
+@media @mobile {
+  section[data-current-styles*='"customSectionHeight": 99'] {
+    .sqs-html-content {
+      text-align: center !important;
+    }
+  }
+}
+
+/*------------------------------------
+ * DESTINATIONS (CS- )
+ *------------------------------------*/
+//blue image background for text blocks- SCOPED TO CUSTOM height = 98 (in saved sections + also in gallery)
+section[data-current-styles*='"customSectionHeight": 98'] {
+  .sqs-block-html {
+    background-image: url(https://static1.squarespace.com/static/66bf0e4f6a2a996242bcdb71/t/66e9c4a629f38206fddbff26/1726596264489/Testimonial+BG.png);
+    background-size: fill;
+    background-repeat: no-repeat;
+    padding: 1rem 2rem;
+    border-radius: 14px;
+  }
+}
